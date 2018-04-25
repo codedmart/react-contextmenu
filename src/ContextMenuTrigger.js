@@ -13,7 +13,7 @@ export default class ContextMenuTrigger extends Component {
         attributes: PropTypes.object,
         collect: PropTypes.func,
         disable: PropTypes.bool,
-        holdToDisplay: PropTypes.number,
+        // holdToDisplay: PropTypes.number,
         renderTag: PropTypes.oneOfType([
             PropTypes.node,
             PropTypes.func
@@ -24,64 +24,64 @@ export default class ContextMenuTrigger extends Component {
         attributes: {},
         collect() { return null; },
         disable: false,
-        holdToDisplay: 1000,
+        // holdToDisplay: 1000,
         renderTag: 'div'
     };
 
     touchHandled = false;
 
-    handleMouseDown = (event) => {
-        if (this.props.holdToDisplay >= 0 && event.button === 0) {
-            event.persist();
-            event.stopPropagation();
+    // handleMouseDown = (event) => {
+        // if (this.props.holdToDisplay >= 0 && event.button === 0) {
+            // event.persist();
+            // event.stopPropagation();
 
-            this.mouseDownTimeoutId = setTimeout(
-                () => this.handleContextClick(event),
-                this.props.holdToDisplay
-            );
-        }
-        callIfExists(this.props.attributes.onMouseDown, event);
-    }
+            // this.mouseDownTimeoutId = setTimeout(
+                // () => this.handleContextClick(event),
+                // this.props.holdToDisplay
+            // );
+        // }
+        // callIfExists(this.props.attributes.onMouseDown, event);
+    // }
 
-    handleMouseUp = (event) => {
-        if (event.button === 0) {
-            clearTimeout(this.mouseDownTimeoutId);
-        }
-        callIfExists(this.props.attributes.onMouseUp, event);
-    }
+    // handleMouseUp = (event) => {
+        // if (event.button === 0) {
+            // clearTimeout(this.mouseDownTimeoutId);
+        // }
+        // callIfExists(this.props.attributes.onMouseUp, event);
+    // }
 
-    handleMouseOut = (event) => {
-        if (event.button === 0) {
-            clearTimeout(this.mouseDownTimeoutId);
-        }
-        callIfExists(this.props.attributes.onMouseOut, event);
-    }
+    // handleMouseOut = (event) => {
+        // if (event.button === 0) {
+            // clearTimeout(this.mouseDownTimeoutId);
+        // }
+        // callIfExists(this.props.attributes.onMouseOut, event);
+    // }
 
-    handleTouchstart = (event) => {
-        this.touchHandled = false;
+    // handleTouchstart = (event) => {
+        // this.touchHandled = false;
 
-        if (this.props.holdToDisplay >= 0) {
-            event.persist();
-            event.stopPropagation();
+        // if (this.props.holdToDisplay >= 0) {
+            // event.persist();
+            // event.stopPropagation();
 
-            this.touchstartTimeoutId = setTimeout(
-                () => {
-                    this.handleContextClick(event);
-                    this.touchHandled = true;
-                },
-                this.props.holdToDisplay
-            );
-        }
-        callIfExists(this.props.attributes.onTouchStart, event);
-    }
+            // this.touchstartTimeoutId = setTimeout(
+                // () => {
+                    // this.handleContextClick(event);
+                    // this.touchHandled = true;
+                // },
+                // this.props.holdToDisplay
+            // );
+        // }
+        // callIfExists(this.props.attributes.onTouchStart, event);
+    // }
 
-    handleTouchEnd = (event) => {
-        if (this.touchHandled) {
-            event.preventDefault();
-        }
-        clearTimeout(this.touchstartTimeoutId);
-        callIfExists(this.props.attributes.onTouchEnd, event);
-    }
+    // handleTouchEnd = (event) => {
+        // if (this.touchHandled) {
+            // event.preventDefault();
+        // }
+        // clearTimeout(this.touchstartTimeoutId);
+        // callIfExists(this.props.attributes.onTouchEnd, event);
+    // }
 
     handleContextMenu = (event) => {
         this.handleContextClick(event);
@@ -126,11 +126,11 @@ export default class ContextMenuTrigger extends Component {
         const newAttrs = assign({}, attributes, {
             className: cx(cssClasses.menuWrapper, attributes.className),
             onContextMenu: this.handleContextMenu,
-            onMouseDown: this.handleMouseDown,
-            onMouseUp: this.handleMouseUp,
-            onTouchStart: this.handleTouchstart,
-            onTouchEnd: this.handleTouchEnd,
-            onMouseOut: this.handleMouseOut,
+            // onMouseDown: this.handleMouseDown,
+            // onMouseUp: this.handleMouseUp,
+            // onTouchStart: this.handleTouchstart,
+            // onTouchEnd: this.handleTouchEnd,
+            // onMouseOut: this.handleMouseOut,
             ref: this.elemRef
         });
 
